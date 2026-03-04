@@ -894,6 +894,7 @@ partial class Form1
         tabControl1.SelectedIndex = 0;
         tabControl1.Size = new Size(1867, 1133);
         tabControl1.TabIndex = 1;
+        tabControl1.Selecting += TabControl1_Selecting;
         // 
         // tabPage1
         // 
@@ -924,6 +925,21 @@ partial class Form1
         tabPage3.TabIndex = 2;
         tabPage3.Text = "Công cụ (T)";
         tabPage3.UseVisualStyleBackColor = true;
+        // 
+        // cmsToolMenu
+        // 
+        cmsToolMenu = new ContextMenuStrip();
+        cmsToolMenu.Font = new Font("Segoe UI", 10F);
+        cmsToolMenu.Items.AddRange(new ToolStripItem[]
+        {
+            new ToolStripMenuItem("Thông tin hệ thống"),
+            new ToolStripMenuItem("Máy in", null, TsmiPrinter_Click),
+            new ToolStripSeparator(),
+            new ToolStripMenuItem("Cài đặt chung"),
+            new ToolStripMenuItem("Thông tin phiên bản")
+        });
+        cmsToolMenu.Name = "cmsToolMenu";
+        cmsToolMenu.Size = new Size(220, 130);
         // 
         // tabPage4
         // 
@@ -1047,4 +1063,5 @@ partial class Form1
     private Panel panel10;
     private Label label13;
     private CustomUI.DSM_TextBox tbCS;
+    private ContextMenuStrip cmsToolMenu;
 }

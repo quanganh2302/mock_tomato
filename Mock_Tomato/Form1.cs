@@ -115,6 +115,23 @@ public partial class Form1 : Form
             isDone       // colDone
         );
     }
+    private void TabControl1_Selecting(object? sender, TabControlCancelEventArgs e)
+    {
+        if (e.TabPage == tabPage3)
+        {
+            e.Cancel = true;
+            var tabRect = tabControl1.GetTabRect(tabControl1.TabPages.IndexOf(tabPage3));
+            var screenPoint = tabControl1.PointToScreen(new Point(tabRect.Left, tabRect.Bottom));
+            cmsToolMenu.Show(screenPoint);
+        }
+    }
+
+    private void TsmiPrinter_Click(object? sender, EventArgs e)
+    {
+        using var printerForm = new PrinterInformationForm();
+        printerForm.ShowDialog(this);
+    }
+
     private void InitGridValue()
     {
         dataGridView1.Rows.Clear();
