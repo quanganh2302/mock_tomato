@@ -49,7 +49,7 @@ partial class Form1
         tabControl1 = new TabControl();
         tabPage1 = new TabPage();
         splitContainer1 = new SplitContainer();
-        tVMenu = new TreeView();
+        objTreeMenu = new TreeView();
         panel2 = new Panel();
         tcParent = new TabControl();
         tPRealPack = new TabPage();
@@ -59,6 +59,7 @@ partial class Form1
         WonoCompleteCheck = new CheckBox();
         label10 = new Label();
         panel1 = new Panel();
+        dtpPacking = new DateTimePicker();
         dGvWono = new DataGridView();
         dataGridViewTextBoxColumn7 = new DataGridViewTextBoxColumn();
         dataGridViewTextBoxColumn8 = new DataGridViewTextBoxColumn();
@@ -69,13 +70,12 @@ partial class Form1
         dataGridViewTextBoxColumn2 = new DataGridViewTextBoxColumn();
         dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
         label19 = new Label();
-        flowLayoutPanel1 = new FlowLayoutPanel();
+        objPackaging = new FlowLayoutPanel();
         rbHb = new RadioButton();
         rbK = new RadioButton();
         RbBnl = new RadioButton();
         rbGg = new RadioButton();
         rbOther = new RadioButton();
-        mtbDate = new MaskedTextBox();
         button5 = new Button();
         checkBox2 = new CheckBox();
         button4 = new Button();
@@ -156,7 +156,7 @@ partial class Form1
         panel1.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)dGvWono).BeginInit();
         ((System.ComponentModel.ISupportInitialize)dGvDetail1).BeginInit();
-        flowLayoutPanel1.SuspendLayout();
+        objPackaging.SuspendLayout();
         tPExport.SuspendLayout();
         tcChild.SuspendLayout();
         tpLabelCustom.SuspendLayout();
@@ -202,7 +202,7 @@ partial class Form1
         // 
         // splitContainer1.Panel1
         // 
-        splitContainer1.Panel1.Controls.Add(tVMenu);
+        splitContainer1.Panel1.Controls.Add(objTreeMenu);
         // 
         // splitContainer1.Panel2
         // 
@@ -212,12 +212,12 @@ partial class Form1
         splitContainer1.SplitterWidth = 3;
         splitContainer1.TabIndex = 0;
         // 
-        // tVMenu
+        // objTreeMenu
         // 
-        tVMenu.Dock = DockStyle.Fill;
-        tVMenu.Location = new Point(0, 0);
-        tVMenu.Margin = new Padding(2);
-        tVMenu.Name = "tVMenu";
+        objTreeMenu.Dock = DockStyle.Fill;
+        objTreeMenu.Location = new Point(0, 0);
+        objTreeMenu.Margin = new Padding(2);
+        objTreeMenu.Name = "objTreeMenu";
         treeNode1.Name = "nC1";
         treeNode1.Text = "Quản lý Master";
         treeNode2.Name = "Node0";
@@ -252,9 +252,10 @@ partial class Form1
         treeNode16.Text = "Báo cáo";
         treeNode17.Name = "nMain";
         treeNode17.Text = "Menu";
-        tVMenu.Nodes.AddRange(new TreeNode[] { treeNode17 });
-        tVMenu.Size = new Size(290, 648);
-        tVMenu.TabIndex = 0;
+        objTreeMenu.Nodes.AddRange(new TreeNode[] { treeNode17 });
+        objTreeMenu.Size = new Size(290, 648);
+        objTreeMenu.TabIndex = 0;
+        objTreeMenu.NodeMouseDoubleClick += ObjTreeMenu_NodeMouseDoubleClick;
         // 
         // panel2
         // 
@@ -345,12 +346,12 @@ partial class Form1
         // 
         // panel1
         // 
+        panel1.Controls.Add(dtpPacking);
         panel1.Controls.Add(dGvWono);
         panel1.Controls.Add(label20);
         panel1.Controls.Add(dGvDetail1);
         panel1.Controls.Add(label19);
-        panel1.Controls.Add(flowLayoutPanel1);
-        panel1.Controls.Add(mtbDate);
+        panel1.Controls.Add(objPackaging);
         panel1.Controls.Add(button5);
         panel1.Controls.Add(checkBox2);
         panel1.Controls.Add(button4);
@@ -393,6 +394,15 @@ partial class Form1
         panel1.Name = "panel1";
         panel1.Size = new Size(988, 614);
         panel1.TabIndex = 10;
+        // 
+        // dtpPacking
+        // 
+        dtpPacking.CustomFormat = "dd/MM/yyyy";
+        dtpPacking.Format = DateTimePickerFormat.Custom;
+        dtpPacking.Location = new Point(147, 185);
+        dtpPacking.Name = "dtpPacking";
+        dtpPacking.Size = new Size(106, 23);
+        dtpPacking.TabIndex = 19;
         // 
         // dGvWono
         // 
@@ -484,18 +494,18 @@ partial class Form1
         label19.TabIndex = 14;
         label19.Text = "Chi tiết đóng gói";
         // 
-        // flowLayoutPanel1
+        // objPackaging
         // 
-        flowLayoutPanel1.BorderStyle = BorderStyle.Fixed3D;
-        flowLayoutPanel1.Controls.Add(rbHb);
-        flowLayoutPanel1.Controls.Add(rbK);
-        flowLayoutPanel1.Controls.Add(RbBnl);
-        flowLayoutPanel1.Controls.Add(rbGg);
-        flowLayoutPanel1.Controls.Add(rbOther);
-        flowLayoutPanel1.Location = new Point(147, 286);
-        flowLayoutPanel1.Name = "flowLayoutPanel1";
-        flowLayoutPanel1.Size = new Size(473, 29);
-        flowLayoutPanel1.TabIndex = 13;
+        objPackaging.BorderStyle = BorderStyle.Fixed3D;
+        objPackaging.Controls.Add(rbHb);
+        objPackaging.Controls.Add(rbK);
+        objPackaging.Controls.Add(RbBnl);
+        objPackaging.Controls.Add(rbGg);
+        objPackaging.Controls.Add(rbOther);
+        objPackaging.Location = new Point(147, 286);
+        objPackaging.Name = "objPackaging";
+        objPackaging.Size = new Size(473, 29);
+        objPackaging.TabIndex = 13;
         // 
         // rbHb
         // 
@@ -556,15 +566,6 @@ partial class Form1
         rbOther.TabStop = true;
         rbOther.Text = "Khác";
         rbOther.UseVisualStyleBackColor = true;
-        // 
-        // mtbDate
-        // 
-        mtbDate.Location = new Point(147, 185);
-        mtbDate.Mask = "00/00/0000";
-        mtbDate.Name = "mtbDate";
-        mtbDate.Size = new Size(106, 23);
-        mtbDate.TabIndex = 12;
-        mtbDate.ValidatingType = typeof(DateTime);
         // 
         // button5
         // 
@@ -1328,8 +1329,8 @@ partial class Form1
         panel1.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)dGvWono).EndInit();
         ((System.ComponentModel.ISupportInitialize)dGvDetail1).EndInit();
-        flowLayoutPanel1.ResumeLayout(false);
-        flowLayoutPanel1.PerformLayout();
+        objPackaging.ResumeLayout(false);
+        objPackaging.PerformLayout();
         tPExport.ResumeLayout(false);
         tcChild.ResumeLayout(false);
         tpLabelCustom.ResumeLayout(false);
@@ -1351,7 +1352,7 @@ partial class Form1
     private TabPage tabPage4;
     private ContextMenuStrip cmsToolMenu;
     private SplitContainer splitContainer1;
-    private TreeView tVMenu;
+    private TreeView objTreeMenu;
     private Panel panel2;
     private TabControl tcParent;
     private TabPage tPRealPack;
@@ -1407,7 +1408,6 @@ partial class Form1
     private Label label7;
     private TextBox textBox9;
     private TextBox textBox8;
-    private MaskedTextBox mtbDate;
     private CheckBox checkBox2;
     private Label label8;
     private Label label11;
@@ -1423,7 +1423,7 @@ partial class Form1
     private TextBox textBox14;
     private TextBox textBox16;
     private Label label18;
-    private FlowLayoutPanel flowLayoutPanel1;
+    private FlowLayoutPanel objPackaging;
     private RadioButton rbHb;
     private RadioButton rbK;
     private RadioButton RbBnl;
@@ -1441,4 +1441,5 @@ partial class Form1
     private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+    private DateTimePicker dtpPacking;
 }

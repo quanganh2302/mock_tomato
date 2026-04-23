@@ -8,7 +8,7 @@ public partial class Form1 : Form
     {
         InitializeComponent();
 
-        tVMenu.ExpandAll();
+        objTreeMenu.ExpandAll();
     }
 
     private void TabControl1_Selecting(object? sender, TabControlCancelEventArgs e)
@@ -37,6 +37,19 @@ public partial class Form1 : Form
     {
         using var printerForm = new PrinterInformationForm();
         printerForm.ShowDialog(this);
+    }
+
+    private void ObjTreeMenu_NodeMouseDoubleClick(object? sender, TreeNodeMouseClickEventArgs e)
+    {
+        switch (e.Node.Name)
+        {
+            case "nCRealPack":
+                tcParent.SelectedIndex = 0;
+                break;
+            case "nCPrint":
+                tcParent.SelectedIndex = 1;
+                break;
+        }
     }
 
 }
